@@ -2,6 +2,12 @@
 	"name":"jknavigation",
 	"version":"1.0",
 	"description":"helps jk navigation in facebook",
+  "icons":{
+    "16":"img/jk16.png",
+    "48":"img/jk48.png",
+    "128":"img/jk128.png"
+  },
+  "homepage_url":"http://blog.revathskumar.com",
 	"content_scripts": [
   {
     "matches": ["https://www.facebook.com/*"],

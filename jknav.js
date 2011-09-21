@@ -14,17 +14,34 @@ jQuery(function($){
 		if(document.activeElement.tagName != "BODY"){
 			return
 		}
-		while($("body").scrollTop() > current_focused.offset().top){
-			current_focused = current_focused.next("li.uiStreamStory")	
+		body = $("body")
+		while(body.scrollTop() > current_focused.offset().top){
+			previous_element = current_focused
+			current_focused = current_focused.next("li.uiStreamStory")
+			if(current_focused.length == 0){
+				current_focused = previous_element.next("li")
+			}	
 		}
 		if(event.which == 106){
+			previous_element = current_focused
 			current_focused = current_focused.next("li.uiStreamStory")
+			if(current_focused.length == 0){
+				current_focused = previous_element.next("li")
+			}
 		}
 		if(event.which == 107){
+			previous_element = current_focused
 			current_focused = current_focused.prev("li.uiStreamStory")
+			if(current_focused.length == 0){
+				current_focused = previous_element.prev("li")
+			}
 		}
-		$("body").animate({
-		    scrollTop: current_focused.offset().top
+		adjust_top = 0;
+		if($("#blueBar").offset().top != 0){
+			adjust_top = $("#blueBar").height()
+		}
+		body.animate({
+		    scrollTop: current_focused.offset().top - adjust_top
 		}, 500);
 	})
 })
